@@ -1,6 +1,7 @@
 package com.lyf.regionless;
 
 import com.lyf.regionless.vf2_mono.*;
+import static com.lyf.regionless.vf2_mono.Match.match;
 
 public class Main {
     public static void main(String[] args) {
@@ -20,7 +21,7 @@ public class Main {
         Int n = new Int();
         int[] c1 = new int[g1.nodeCount()];
         int[] c2 = new int[g1.nodeCount()];
-        Match.match(s, n, c1, c2);
+        match(s, n, c1, c2);
         for (int i = 0; i < g1.nodeCount(); i++) {
             System.out.println(c2[i]);
         }
@@ -38,6 +39,6 @@ public class Main {
             }
         }
         MyVisitor vis = new MyVisitor();
-        Match.match(s0, vis);
+        match(s0, vis);
     }
 }
