@@ -29,9 +29,9 @@ public class Main {
         State s0 = new VF2MonoState(g1, g2);
 
         class MyVisitor extends Visitor {
-            public boolean visit(int n, int[] c1, int[] c2) {
+            public boolean visit(int[] c1, int[] c2) {
                 System.out.println("solution:");
-                for (int i = 0; i < n; i++) {
+                for (int i = 0; i < c2.length; i++) {
                     System.out.println(c2[i]);
                 }
                 return false;

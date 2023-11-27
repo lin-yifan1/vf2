@@ -83,9 +83,8 @@ public class Match {
     static boolean match(int c1[], int c2[], Visitor vis, State s, Int pcount) {
         if (s.isGoal()) {
             pcount.v++;
-            int n = s.coreLen();
             s.getCoreSet(c1, c2);
-            return vis.visit(n, c1, c2);
+            return vis.visit(c1, c2);
         }
 
         if (s.isDead()) {
