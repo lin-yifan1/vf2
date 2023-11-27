@@ -25,11 +25,11 @@ public class ARGraph {
         return graph.nodes().size();
     }
 
-    public int degree(int node) {
+    int degree(int node) {
         return graph.degree(node);
     }
 
-    public boolean compatibleNode(int node1, int node2) {
+    boolean compatibleNode(int node1, int node2) {
         if (bitsets == null) {
             return true;
         }
@@ -38,7 +38,7 @@ public class ARGraph {
         }
     }
 
-    public int getNbrEdge(int node, int i, EdgeAttr attr) {
+    int getNbrEdge(int node, int i, EdgeAttr attr) {
         Integer[] adjs_arr = graph.adjacentNodes(node).toArray(new Integer[0]);
         EdgeAttr attr2 = graph.edgeValueOrDefault(node, adjs_arr[i], new EdgeAttr());
         attr.bw = attr2.bw;
@@ -46,20 +46,20 @@ public class ARGraph {
         return adjs_arr[i];
     }
 
-    public int getNbrEdge(int node, int i) {
+    int getNbrEdge(int node, int i) {
         Integer[] adjs_arr = graph.adjacentNodes(node).toArray(new Integer[0]);
         return adjs_arr[i];
     }
 
-    public boolean compatibleEdge(EdgeAttr attr1, EdgeAttr attr2) {
+    boolean compatibleEdge(EdgeAttr attr1, EdgeAttr attr2) {
         return (attr1.bw <= attr2.bw) && (attr1.ltc >= attr2.ltc);
     }
 
-    public EdgeAttr getEdgeAttr(int node1, int node2) {
+    EdgeAttr getEdgeAttr(int node1, int node2) {
         return graph.edgeValueOrDefault(node1, node2, new EdgeAttr());
     }
 
-    public boolean hasEdge(int node1, int node2) {
+    boolean hasEdge(int node1, int node2) {
         return graph.adjacentNodes(node1).contains(node2);
     }
 }

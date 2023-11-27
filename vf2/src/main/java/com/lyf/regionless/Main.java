@@ -18,11 +18,10 @@ public class Main {
 
         // 输出第一个解
         State s = new VF2MonoState(g1, g2);
-        Int n = new Int();
         int[] c1 = new int[g1.nodeCount()];
         int[] c2 = new int[g1.nodeCount()];
-        match(s, n, c1, c2);
-        for (int i = 0; i < g1.nodeCount(); i++) {
+        match(s, c1, c2);
+        for (int i = 0; i < c2.length; i++) {
             System.out.println(c2[i]);
         }
 

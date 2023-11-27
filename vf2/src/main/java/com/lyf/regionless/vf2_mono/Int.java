@@ -1,8 +1,8 @@
 package com.lyf.regionless.vf2_mono;
 
-public class Int {
-    public int v;
-    public Int() {
+class Int {
+    int v;
+    Int() {
         v = 0;
     }
 }

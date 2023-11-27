@@ -12,8 +12,8 @@ public class Match {
      * c1 and c2 will contain the ids of the corresponding nodes
      * in the two graphs
      ------------------------------------------------------------*/
-    public static boolean match(State s0, Int pn, int c1[], int c2[]) {
-        return match(pn, c1, c2, s0);
+    public static boolean match(State s0, int c1[], int c2[]) {
+        return match(c1, c2, s0);
     }
 
     /*------------------------------------------------------------
@@ -46,9 +46,8 @@ public class Match {
      * c1 and c2 will contain the ids of the corresponding nodes
      * in the two graphs.
      ------------------------------------------------------------*/
-    static boolean match(Int pn, int c1[], int c2[], State s) {
+    static boolean match(int c1[], int c2[], State s) {
         if (s.isGoal()) {
-            pn.v = s.coreLen();
             s.getCoreSet(c1, c2);
             return true;
         }
@@ -66,7 +65,7 @@ public class Match {
             if (s.isFeasiblePair(pn1.v, pn2.v)) {
                 State s1 = s.copy();
                 s1.addPair(pn1.v, pn2.v);
-                found = match(pn, c1, c2, s1);
+                found = match(c1, c2, s1);
                 s1.backTrack();
             }
         }
