@@ -1,5 +1,7 @@
 package com.lyf.regionless.vf2_mono;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class VF2MonoState implements State {
     int core_len, orig_core_len;
     int added_node1;
@@ -119,7 +121,7 @@ public class VF2MonoState implements State {
      * to start from the first pair.
      * Returns false if no more pairs are available.
      -------------------------------------------------------------------------*/
-    public boolean nextPair(Int pn1, Int pn2,
+    public boolean nextPair(AtomicInteger pn1, AtomicInteger pn2,
             int prev_n1, int prev_n2) {
         if (prev_n1 == NULL_NODE)
             prev_n1 = 0;
@@ -153,8 +155,8 @@ public class VF2MonoState implements State {
         }
 
         if (prev_n1 < n1 && prev_n2 < n2) {
-            pn1.v = prev_n1;
-            pn2.v = prev_n2;
+            pn1.set(prev_n1);
+            pn2.set(prev_n2);
             return true;
         }
 

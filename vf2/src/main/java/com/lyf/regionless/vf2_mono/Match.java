@@ -1,4 +1,5 @@
 package com.lyf.regionless.vf2_mono;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Match {
     private static int NULL_NODE = -1;
@@ -31,10 +32,10 @@ public class Match {
         int[] c1 = new int[n1];
         int[] c2 = new int[n1];
 
-        Int count = new Int();
+        AtomicInteger count = new AtomicInteger();
         match(c1, c2, vis, s0, count);
 
-        return count.v;
+        return count.get();
     }
 
     /*-------------------------------------------------------------
@@ -56,15 +57,13 @@ public class Match {
             return false;
         }
 
-        Int pn1 = new Int();
-        Int pn2 = new Int();
-        pn1.v = NULL_NODE;
-        pn2.v = NULL_NODE;
+        AtomicInteger pn1 = new AtomicInteger(NULL_NODE);
+        AtomicInteger pn2 = new AtomicInteger(NULL_NODE);
         boolean found = false;
-        while (!found && s.nextPair(pn1, pn2, pn1.v, pn2.v)) {
-            if (s.isFeasiblePair(pn1.v, pn2.v)) {
+        while (!found && s.nextPair(pn1, pn2, pn1.get(), pn2.get())) {
+            if (s.isFeasiblePair(pn1.get(), pn2.get())) {
                 State s1 = s.copy();
-                s1.addPair(pn1.v, pn2.v);
+                s1.addPair(pn1.get(), pn2.get());
                 found = match(c1, c2, s1);
                 s1.backTrack();
             }
@@ -80,9 +79,9 @@ public class Match {
      * Stops when there are no more matches, or the visitor vis
      * returns true.
      ------------------------------------------------------------*/
-    static boolean match(int c1[], int c2[], Visitor vis, State s, Int pcount) {
+    static boolean match(int c1[], int c2[], Visitor vis, State s, AtomicInteger pcount) {
         if (s.isGoal()) {
-            pcount.v++;
+            pcount.getAndIncrement();
             s.getCoreSet(c1, c2);
             return vis.visit(c1, c2);
         }
@@ -91,15 +90,13 @@ public class Match {
             return false;
         }
 
-        Int n1 = new Int();
-        Int n2 = new Int();
-        n1.v = NULL_NODE;
-        n2.v = NULL_NODE;
+        AtomicInteger n1 = new AtomicInteger(NULL_NODE);
+        AtomicInteger n2 = new AtomicInteger(NULL_NODE);
 
-        while (s.nextPair(n1, n2, n1.v, n2.v)) {
-            if (s.isFeasiblePair(n1.v, n2.v)) {
+        while (s.nextPair(n1, n2, n1.get(), n2.get())) {
+            if (s.isFeasiblePair(n1.get(), n2.get())) {
                 State s1 = s.copy();
-                s1.addPair(n1.v, n2.v);
+                s1.addPair(n1.get(), n2.get());
                 if (match(c1, c2, vis, s1, pcount)) {
                     s1.backTrack();
                     return true;

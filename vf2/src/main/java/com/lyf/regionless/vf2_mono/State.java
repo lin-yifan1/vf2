@@ -1,5 +1,7 @@
 package com.lyf.regionless.vf2_mono;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public interface State {
     ARGraph getGraph1();
 
@@ -11,7 +13,7 @@ public interface State {
 
     int coreLen();
 
-    boolean nextPair(Int pn1, Int pn2, int prev_n1, int prev_n2);
+    boolean nextPair(AtomicInteger pn1, AtomicInteger pn2, int prev_n1, int prev_n2);
 
     boolean isFeasiblePair(int node1, int node2);
 
