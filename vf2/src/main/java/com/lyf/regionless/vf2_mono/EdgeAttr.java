@@ -1,12 +1,12 @@
 package com.lyf.regionless.vf2_mono;
 
 class EdgeAttr {
-    double bw;
-    double ltc;
+    Double bw;
+    Double ltc;
 
     EdgeAttr() {
-        bw = 0;
-        ltc = 0;
+        bw = 0.0;
+        ltc = 0.0;
     }
 
     EdgeAttr(double bw, double ltc) {

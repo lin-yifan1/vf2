@@ -52,7 +52,7 @@ public class ARGraph {
     }
 
     boolean compatibleEdge(EdgeAttr attr1, EdgeAttr attr2) {
-        return (attr1.bw <= attr2.bw) && (attr1.ltc >= attr2.ltc);
+        return ((attr1.bw == null) || (attr1.bw <= attr2.bw)) && ((attr1.ltc == null) || (attr1.ltc >= attr2.ltc));
     }
 
     EdgeAttr getEdgeAttr(int node1, int node2) {
